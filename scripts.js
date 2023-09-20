@@ -19,4 +19,3 @@ for (let i = 0; i < data.length; i += 1){
     itemsContainer.appendChild(newDiv)
 }
 
-newDiv.appendChild(img)
