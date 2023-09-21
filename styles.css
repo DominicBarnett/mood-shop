@@ -21,3 +21,33 @@ background-color: bisque;
     padding: 0.5em;
     text-decoration: none;
 }
+.items{
+    width: 80%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+
+
+
+}
+.items img{
+    width: 100%;
+    height: auto;
+}
+.item{
+    border: solid 1px;
+    border-color: black;
+    padding: .5em;
+
+}
+.item button{
+    border-radius: 8px;
+    border: 0;
+    padding: 5px;
+    background-color: dodgerblue;
+}
+.item button:hover{
+    background-color: tomato;
+}
