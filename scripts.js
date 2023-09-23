@@ -58,11 +58,17 @@ for (let i = 0; i < data.length; i += 1){
 }
 const cart = [ ]
 
+// const obj = {name:"Shoe", price: 9.99, qty: 3}
+//     console.log(obj)
+
 function addItem(name, price){
-    cart.push(name, price)
+    const item = {name: name, price: price, qty: 1}
+    cart.push(item)
 }
 function showItems(){
-    console.log(cart)
+//     console.log(cart[0]) 
+//     console.log(cart.length)
+        console.log(`You have ${cart.length} items in your cart`)
 }
 addItem('apple', 0.99)
 showItems()
