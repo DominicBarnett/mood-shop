@@ -1,6 +1,10 @@
 import data from './data.js'
 
 const itemsContainer = document.querySelector('#items')
+const itemList = document.getElementById('item-list')
+const cartQty = document.getElementById('cart-qty')
+const cartTotal = document.getElementById('cart-total')
+
 
 //Length of the data determines how many time the loop goes
 // LINE 7 - 29 is the stretch challenge ES6 foreach loop attempt keep trying
@@ -39,7 +43,7 @@ for (let i = 0; i < data.length; i += 1){
     img.height = 300
 
     newDiv.appendChild(img)
-    console.log(img)
+    // console.log(img)
     itemsContainer.appendChild(newDiv)
 
     const desc = document.createElement('P')
@@ -56,6 +60,12 @@ for (let i = 0; i < data.length; i += 1){
     button.innerHTML = "Add to Cart"
     newDiv.appendChild(button)
 }
+
+const all_items_button = Array.from(document.querySelectorAll("button"))
+all_items_button.forEach(elt => elt.addEventListener('click', () => {
+    addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
+    showItems()
+  }))
 const cart = [ ]
 
 // const obj = {name:"Shoe", price: 9.99, qty: 3}
@@ -81,15 +91,34 @@ function showItems(){
     // }
 //     console.log(cart[0]) 
 //     console.log(cart.length)
-        console.log(`You have ${getQty()} items in your cart`)
+        let itemStr = '' 
+        
+        cartQty.innerHTML = `You have ${getQty()} items in your cart`
         for (let i = 0; i < cart.length; i += 1){
-            console.log(`${ cart[i].name } ${cart[i].price} x ${cart[i].qty} `)
+            // console.log(`${ cart[i].name } ${cart[i].price} x ${cart[i].qty} `)
+            // const name = cart[i].name
+            // const price = cart[i].price
+            // const qty = cart[i].qty
+            
+            const {name, price, qty} = cart[i]
+            let itemTotal = price * qty
+            itemStr += `<li> 
+            ${ name } 
+            ${price} x ${qty} = 
+            ${itemTotal.toFixed(2)}
+            </li> `
         }
         // let total = 0
         // for (let i = 0; i < cart.length; i += 1){
         //     total += cart[i].price * cart[i].qty
         // }
-        console.log(`Total in cart $${getTotal()}`)
+        
+       cartTotal.innerHTML = `Total in cart $${getTotal()}`
+
+        
+        itemList.innerHTML = itemStr
+
+
 }
 // ----------------------------------------------------------------
 // Get quantity
@@ -129,18 +158,18 @@ function removeItem (name, qty = 0){
         }
     }
 }
-addItem('apple', 0.99)
-addItem('frisbee', 9.99)
-addItem('orange', 0.99)
-addItem('opinion', 0.02)
-addItem('apple', 0.99)
-addItem('apple', 0.99)
-addItem('orange', 0.99)
-addItem('stuff', 7.36)
-addItem('stuff', 7.36)
-addItem('stuff', 7.36)
-addItem('stuff', 7.36)
+// addItem('apple', 0.99)
+// addItem('frisbee', 9.99)
+// addItem('orange', 0.99)
+// addItem('opinion', 0.02)
+// addItem('apple', 0.99)
+// addItem('apple', 0.99)
+// addItem('orange', 0.99)
+// addItem('stuff', 7.36)
+// addItem('stuff', 7.36)
+// addItem('stuff', 7.36)
+// addItem('stuff', 7.36)
 
-removeItem('stuff', 1)
-removeItem('opinion')
-showItems()
+// removeItem('stuff', 1)
+// removeItem('opinion')
+// showItems()
