@@ -68,6 +68,18 @@ all_items_button.forEach(elt => elt.addEventListener('click', () => {
   }))
 const cart = [ ]
 
+// --------------------------
+// handle clicks on list
+itemList.onclick = function(e) {
+    // console.log("clicked list")
+    // console.log(e.target)
+    if (e.target && e.target.classList.contains('remove')){
+                
+                const name = e.target.dataset.name //data-name=""
+                removeItem(name)
+            }
+}
+
 // const obj = {name:"Shoe", price: 9.99, qty: 3}
 //     console.log(obj)
 //-----------------------------------------------------------------
@@ -106,6 +118,7 @@ function showItems(){
             ${ name } 
             ${price} x ${qty} = 
             ${itemTotal.toFixed(2)}
+            <button class="remove" data-name="${name}">Remove</button>
             </li> `
         }
         // let total = 0
@@ -115,12 +128,15 @@ function showItems(){
         
        cartTotal.innerHTML = `Total in cart $${getTotal()}`
 
-        
+   
         itemList.innerHTML = itemStr
 
 
 }
 // ----------------------------------------------------------------
+
+
+
 // Get quantity
 function getQty(){
     let qty = 0
@@ -140,6 +156,7 @@ function getTotal(){
 }
 // --------------------------------------------------------------
 function removeItem (name, qty = 0){
+    
     for (let i = 0; i < cart.length; i +=1){
         // if (cart[i].name === name) {
         //     cart.splice(i, 1)
@@ -151,13 +168,15 @@ function removeItem (name, qty = 0){
             }
             // cart[i].qty -= 1
             if (cart[i].qty < 1 || qty === 0){
-                cart.splice(i, 1)
-                 return
+                cart.splice(i, 1)  
             }
+            showItems()
             return
         }
     }
 }
+// --------------------------------------------------------------
+
 // addItem('apple', 0.99)
 // addItem('frisbee', 9.99)
 // addItem('orange', 0.99)
