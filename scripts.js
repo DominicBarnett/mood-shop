@@ -77,7 +77,15 @@ itemList.onclick = function(e) {
                 
                 const name = e.target.dataset.name //data-name=""
                 removeItem(name)
-            }
+        }
+    else if (e.target && e.target.classList.contains('add-one')){
+        const name = e.target.dataset.name
+        addItem(name)
+    }
+    else if (e.target && e.target.classList.contains('remove-one')){
+        const name = e.target.dataset.name
+        removeItem(name, 1)
+    }
 }
 
 // const obj = {name:"Shoe", price: 9.99, qty: 3}
@@ -88,6 +96,7 @@ function addItem(name, price){
     for(let i = 0; i < cart.length; i += 1){
         if (cart[i].name === name){
             cart[i].qty += 1
+            showItems()
             return
         }
     }
@@ -119,6 +128,8 @@ function showItems(){
             ${price} x ${qty} = 
             ${itemTotal.toFixed(2)}
             <button class="remove" data-name="${name}">Remove</button>
+            <button class="add-one" data-name="${name}">+</button>
+            <button class="remove-one" data-name="${name}">-</button>
             </li> `
         }
         // let total = 0
