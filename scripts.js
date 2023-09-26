@@ -69,6 +69,16 @@ all_items_button.forEach(elt => elt.addEventListener('click', () => {
 const cart = [ ]
 
 // --------------------------
+//handle change envents on update input
+itemList.onchange = function (e) {
+    if (e.target && e.target.classList.contains('update')){
+        const name = e.target.dataset.name
+        const qty = parseInt(e.target.value)
+        // (e.console.logtarget)
+        updateCart(name, qty)
+
+    }
+}
 // handle clicks on list
 itemList.onclick = function(e) {
     // console.log("clicked list")
@@ -105,45 +115,45 @@ function addItem(name, price){
 }
 // ----------------------------------------------------------
 // Show items
-function showItems(){
-    // let qty = 0
-    // for (let i = 0; i < cart.length; i += 1) {
-    //     qty += cart[i].qty
-    // }
-//     console.log(cart[0]) 
-//     console.log(cart.length)
-        let itemStr = '' 
+// function showItems(){
+//     // let qty = 0
+//     // for (let i = 0; i < cart.length; i += 1) {
+//     //     qty += cart[i].qty
+//     // }
+//     //     console.log(cart[0]) 
+//     //     console.log(cart.length)
+//         let itemStr = '' 
         
-        cartQty.innerHTML = `You have ${getQty()} items in your cart`
-        for (let i = 0; i < cart.length; i += 1){
-            // console.log(`${ cart[i].name } ${cart[i].price} x ${cart[i].qty} `)
-            // const name = cart[i].name
-            // const price = cart[i].price
-            // const qty = cart[i].qty
+//         cartQty.innerHTML = `You have ${getQty()} items in your cart`
+//         for (let i = 0; i < cart.length; i += 1){
+//             // console.log(`${ cart[i].name } ${cart[i].price} x ${cart[i].qty} `)
+//             // const name = cart[i].name
+//             // const price = cart[i].price
+//             // const qty = cart[i].qty
             
-            const {name, price, qty} = cart[i]
-            let itemTotal = price * qty
-            itemStr += `<li> 
-            ${ name } 
-            ${price} x ${qty} = 
-            ${itemTotal.toFixed(2)}
-            <button class="remove" data-name="${name}">Remove</button>
-            <button class="add-one" data-name="${name}">+</button>
-            <button class="remove-one" data-name="${name}">-</button>
-            </li> `
-        }
-        // let total = 0
-        // for (let i = 0; i < cart.length; i += 1){
-        //     total += cart[i].price * cart[i].qty
-        // }
+//             const {name, price, qty} = cart[i]
+//             let itemTotal = price * qty
+//             itemStr += `<li> 
+//             ${ name } 
+//             ${price} x ${qty} = 
+//             ${itemTotal.toFixed(2)}
+//             <button class="remove" data-name="${name}">Remove</button>
+//             <button class="add-one" data-name="${name}">+</button>
+//             <button class="remove-one" data-name="${name}">-</button>
+//             </li> `
+//         }
+//         // let total = 0
+//         // for (let i = 0; i < cart.length; i += 1){
+//         //     total += cart[i].price * cart[i].qty
+//         // }
         
-       cartTotal.innerHTML = `Total in cart $${getTotal()}`
+//        cartTotal.innerHTML = `Total in cart $${getTotal()}`
 
    
-        itemList.innerHTML = itemStr
+//         itemList.innerHTML = itemStr
 
 
-}
+// }
 // ----------------------------------------------------------------
 
 
@@ -187,7 +197,61 @@ function removeItem (name, qty = 0){
     }
 }
 // --------------------------------------------------------------
+//update cart function
+function updateCart(name, qty){
+    // console.log("updateCart")
+    // console.log(cart.length)
+    for (let i = 0; i < cart.length; i += 1){
+        // console.log(cart[i].name , name, qty)
+        if (cart[i].name === name){
+            cart[i].qty = qty
+            // console.log(qty)
+            showItems()
+            return
+        }
+    }
 
+}
+function showItems(){
+    // let qty = 0
+    // for (let i = 0; i < cart.length; i += 1) {
+    //     qty += cart[i].qty
+    // }
+//     console.log(cart[0]) 
+//     console.log(cart.length)
+        let itemStr = '' 
+        
+        cartQty.innerHTML = `You have ${getQty()} items in your cart`
+        for (let i = 0; i < cart.length; i += 1){
+            // console.log(`${ cart[i].name } ${cart[i].price} x ${cart[i].qty} `)
+            // const name = cart[i].name
+            // const price = cart[i].price
+            // const qty = cart[i].qty
+            
+            const {name, price, qty} = cart[i]
+            let itemTotal = price * qty
+            itemStr += `<li> 
+            ${ name } 
+            ${price} x ${qty} = 
+            ${itemTotal.toFixed(2)}
+            <button class="remove" data-name="${name}">Remove</button>
+            <button class="add-one" data-name="${name}">+</button>
+            <button class="remove-one" data-name="${name}">-</button>
+            <input class="update" type="number" data-name="${name}">
+            </li> `
+        }
+        // let total = 0
+        // for (let i = 0; i < cart.length; i += 1){
+        //     total += cart[i].price * cart[i].qty
+        // }
+        
+       cartTotal.innerHTML = `Total in cart $${getTotal()}`
+
+   
+        itemList.innerHTML = itemStr
+
+
+}
 // addItem('apple', 0.99)
 // addItem('frisbee', 9.99)
 // addItem('orange', 0.99)
