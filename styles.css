@@ -51,3 +51,29 @@ background-color: bisque;
 .item button:hover{
     background-color: tomato;
 }
+footer{
+    background-color: bisque;
+    padding: 1em;
+}
+footer li{
+    list-style: none;
+    border: solid 1px black;
+    width: 475px;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+.cart-button{
+    border-radius: 8px;
+    border: 0;
+    padding: 5px;
+    background-color: dodgerblue;
+}
+.cart-button:hover{
+    background-color: tomato;
+}
+.update{
+    border: solid 1px dodgerblue ;
+}
+#cart-total{
+    text-decoration: underline;
+}

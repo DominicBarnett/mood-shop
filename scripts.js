@@ -234,9 +234,9 @@ function showItems(){
             ${ name } 
             ${price} x ${qty} = 
             ${itemTotal.toFixed(2)}
-            <button class="remove" data-name="${name}">Remove</button>
-            <button class="add-one" data-name="${name}">+</button>
-            <button class="remove-one" data-name="${name}">-</button>
+            <button class="remove cart-button" data-name="${name}">Remove</button>
+            <button class="add-one cart-button" data-name="${name}">+</button>
+            <button class="remove-one cart-button" data-name="${name}">-</button>
             <input class="update" type="number" data-name="${name}">
             </li> `
         }
